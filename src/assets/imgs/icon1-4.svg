@@ -1,0 +1,4 @@
+<svg id="thumb-up" xmlns="http://www.w3.org/2000/svg" width="24" height="22.5" viewBox="0 0 24 22.5">
+  <rect id="thumb-up_Background_" data-name="thumb-up (Background)" width="24" height="22.5" fill="none"/>
+  <path id="thumb-up-2" data-name="thumb-up" d="M14.579,16.875H1.5A1.457,1.457,0,0,1,0,15.469V8.438A1.457,1.457,0,0,1,1.5,7.031h3L7.5,0h3A1.457,1.457,0,0,1,12,1.406V5.625h4.829a1.529,1.529,0,0,1,1.182.541,1.33,1.33,0,0,1,.273,1.206l-2.25,8.438A1.483,1.483,0,0,1,14.579,16.875ZM8.515,1.406,6,7.3v8.166h8.579l2.25-8.438H10.5V1.406ZM1.5,8.438v7.031h3V8.438Z" transform="translate(3 2.813)" fill="rgba(255,255,255,0.9)"/>
+</svg>
