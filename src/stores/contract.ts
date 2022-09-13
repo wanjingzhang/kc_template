@@ -1,7 +1,8 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { data } from "@/data";
-
+import axios from "@/api/axios";
+// https://crm.11rem.com/newdashboard
 export const useTableStore = defineStore("table", {
   state: () => ({
     table: data.gpData,
@@ -10,21 +11,17 @@ export const useTableStore = defineStore("table", {
   getters: {},
   actions: {
     changeOffice(office: string) {
-      fetch(`/api/teamleaderbyoffice?officeid=${office}`, {
-        method: "get",
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((res) => {
-          if (res.status === 200) {
-            res.text();
-          }
-          console.log(res);
-        })
-        .then((data) => {
-          console.log(data);
-        });
+      try {
+        axios
+          .get(`/api/teamleaderbyoffice?officeid=${office}`, {})
+          .then((response: { data: any }) => {
+            console.log(response.data);
+            console.log("请求成功！");
+          });
+      } catch (err) {
+        console.log(err);
+      } finally {
+      }
 
       this.office = office;
       let dt = data.gpData;
