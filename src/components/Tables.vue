@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, toRef } from "vue";
 import TableGroupVue from "./TableGroup.vue";
 import { useTableStore } from "@/stores/contract";
 const activeName = ref("1");
@@ -52,6 +51,9 @@ const tableStore = useTableStore();
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 74px;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
   }
   :deep(.item-title + .el-icon) {
     color: var(--vt-c-white);

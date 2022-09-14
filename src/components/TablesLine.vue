@@ -60,7 +60,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
 import { useTableStore } from "@/stores/contract";
 const tableStore = useTableStore();
 

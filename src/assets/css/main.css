@@ -1,7 +1,7 @@
 @import "./base.less";
 
 #app {
-  min-width: 600px;
+  min-width: 890px;
   margin: 26px;
   height: calc(100% - 58px);
   font-weight: normal;
