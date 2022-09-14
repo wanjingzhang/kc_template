@@ -17,7 +17,7 @@
     <div class="item-content-line-right">
       <div class="item-content-line-right-column">
         <a class="item-link" :href="team?.link" target="_blank">{{
-          tableStore.office
+          getOffice(tableStore.office)
         }}</a>
       </div>
       <div class="item-content-line-right-column">
@@ -29,7 +29,7 @@
             :loading="false"
           >
             <el-option
-              v-for="item in tableStore.projectLeader"
+              v-for="item in tableStore.pjLeader"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -42,11 +42,11 @@
         <div class="item-group">
           <el-select
             v-model="director"
-            placeholder="Joanne"
+            placeholder="Select"
             class="search-left-select"
           >
             <el-option
-              v-for="item in projectDirectorList"
+              v-for="item in tableStore.pjDirector"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -60,9 +60,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useTableStore } from "@/stores/contract";
 const tableStore = useTableStore();
+
 const {
   lineName,
   lineId,
@@ -91,6 +92,17 @@ const {
 
 const leader = ref("");
 const director = ref("");
+let officeOld = tableStore.office;
+
+// 改变location时，需要刷新当前的数据
+const getOffice = (str: string) => {
+  if (officeOld != str) {
+    leader.value = "";
+    director.value = "";
+    officeOld = str;
+  }
+  return str;
+};
 </script>
 
 <style lang="less">

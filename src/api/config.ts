@@ -1,6 +1,6 @@
 export default {
   development: {
-    baseUrl: "https://xxx.xxx.com",
+    baseUrl: "https://xxxx.xxxx.com",
   },
   production: {
     baseUrl: "http://production.com",
