@@ -2,25 +2,29 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { data } from "@/data";
 import axios from "@/api/axios";
-// https://crm.11rem.com/newdashboard
 export const useTableStore = defineStore("table", {
   state: () => ({
     table: data.gpData,
     office: "Shanghai",
+    projectLeader: new Array(),
   }),
   getters: {},
   actions: {
     changeOffice(office: string) {
       try {
+        // 获取项目经理列表
         axios
           .get(`/api/teamleaderbyoffice?officeid=${office}`, {})
           .then((response: { data: any }) => {
-            console.log(response.data);
-            console.log("请求成功！");
+            let pjLeader = [
+              ...response.data.map((item: any) => {
+                return { label: item["teamleader"], value: item["teamleader"] };
+              }),
+            ];
+            this.projectLeader = pjLeader;
           });
       } catch (err) {
         console.log(err);
-      } finally {
       }
 
       this.office = office;
@@ -33,7 +37,6 @@ export const useTableStore = defineStore("table", {
         });
       });
       this.table = dt;
-      console.log(ndt);
     },
   },
 });
