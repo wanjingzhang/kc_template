@@ -7,10 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
 dist
 data
-node_modules
-dist
+*.env*
+config.ts
+
+node_modules 
 dist-ssr
 *.local
 

@@ -122,7 +122,7 @@ const getOffice = (str: string) => {
         &-left {
           width: 38%;
           text-align: left;
-          padding: 10px 5px 10px 42px;
+          padding: 10px 5px 10px 32px;
         }
         &-right {
           width: 62%;
