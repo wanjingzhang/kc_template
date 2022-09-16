@@ -10,7 +10,7 @@
         v-on:change="changeOffice"
       >
         <el-option
-          v-for="item in options"
+          v-for="item in tableStore.officeList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -35,20 +35,8 @@
 import { useTableStore } from "@/stores/contract";
 const tableStore = useTableStore();
 const office = ref("Beijing");
-const options = [
-  {
-    value: "Shanghai",
-    label: "Shanghai",
-  },
-  {
-    value: "Beijing",
-    label: "Beijing",
-  },
-  {
-    value: "HongKong",
-    label: "HongKong",
-  },
-];
+const options = tableStore.getOffice();
+
 const data = reactive({ searchTxt: "" });
 const changeOffice = (off: string) => {
   nextTick(() => {

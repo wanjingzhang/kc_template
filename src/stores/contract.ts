@@ -5,11 +5,22 @@ export const useTableStore = defineStore("table", {
   state: () => ({
     table: data.gpData,
     office: "Shanghai",
+    officeList: new Array(),
     pjLeader: new Array(),
     pjDirector: new Array(),
   }),
   getters: {},
   actions: {
+    getOffice() {
+      axios.get("api/invoiceoffice").then((response: { data: any }) => {
+        let officeList = [
+          ...response.data.map((item: any) => {
+            return { label: item["officeid"], value: item["officeid"] };
+          }),
+        ];
+        this.officeList = officeList;
+      });
+    },
     changeOffice(office: string) {
       try {
         // 获取项目经理列表
