@@ -6,7 +6,7 @@ export const useTableStore = defineStore("table", {
     table: data.gpData,
     office: "Shanghai",
     officeList: new Array(),
-    pjLeader: new Array(),
+    pjLeader: { list: [] },
     pjDirector: new Array(),
   }),
   getters: {},
@@ -32,7 +32,7 @@ export const useTableStore = defineStore("table", {
                 return { label: item["teamleader"], value: item["teamleader"] };
               }),
             ];
-            this.pjLeader = pjLeader;
+            this.pjLeader.list = pjLeader;
           });
         // 获取项目总监列表
         axios

@@ -16,12 +16,14 @@
     </div>
     <div class="item-content-line-right">
       <div class="item-content-line-right-column">
-        <a class="item-link" :href="team?.link" target="_blank">{{
-          getOffice(tableStore.office)
-        }}</a>
+        <div v-if="!team?.hide">
+          <a class="item-link" :href="team?.link" target="_blank">{{
+            getOffice(tableStore.office)
+          }}</a>
+        </div>
       </div>
       <div class="item-content-line-right-column">
-        <div class="item-group">
+        <div v-if="!pjLeader?.hide" class="item-group">
           <el-select
             v-model="leader"
             placeholder="Select"
@@ -29,7 +31,7 @@
             :loading="false"
           >
             <el-option
-              v-for="item in tableStore.pjLeader"
+              v-for="item in tableStore.pjLeader?.list"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -63,31 +65,25 @@
 import { useTableStore } from "@/stores/contract";
 const tableStore = useTableStore();
 
-const {
-  lineName,
-  lineId,
-  team,
-  office,
-  projectLeaderList,
-  projectDirectorList,
-} = withDefaults(
-  defineProps<{
-    lineName: string;
-    lineId: string;
-    team: any;
-    office?: any;
-    projectLeaderList: any[];
-    projectDirectorList: any[];
-  }>(),
-  {
-    lineName: "",
-    lineId: "",
-    team: { name: "", link: "" },
-    office: { name: "", link: "" },
-    projectLeaderList: () => [{ value: "", label: "" }],
-    projectDirectorList: () => [{ value: "", label: "" }],
-  }
-);
+const { lineName, lineId, team, office, pjLeader, projectDirectorList } =
+  withDefaults(
+    defineProps<{
+      lineName: string;
+      lineId: string;
+      team: any;
+      office?: any;
+      pjLeader: any;
+      projectDirectorList: any[];
+    }>(),
+    {
+      lineName: "",
+      lineId: "",
+      team: { name: "", link: "" },
+      office: { name: "", link: "" },
+      pjLeader: { hide: false },
+      projectDirectorList: () => [{ value: "", label: "" }],
+    }
+  );
 
 const leader = ref("");
 const director = ref("");
@@ -132,8 +128,14 @@ const getOffice = (str: string) => {
           &-column {
             display: flex;
             align-items: center;
+            width: 230px;
             &:first-child {
-              margin: 0 5%;
+              width: 80px;
+              margin-left: 5%;
+              div {
+                width: 100%;
+                text-align: center;
+              }
             }
           }
         }
